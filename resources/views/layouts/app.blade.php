@@ -95,8 +95,10 @@
     .badge-gray { background: rgba(148, 163, 184, 0.1); color: #94A3B8; border: 1px solid rgba(148, 163, 184, 0.2); }
 
     /* RFID pulse */
-    .rfid-pulse { animation: rfidPulse 1.5s infinite; }
-    @keyframes rfidPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); } 50% { box-shadow: 0 0 0 12px rgba(59, 130, 246, 0); } }
+    .rfid-pulse { animation: rfidPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    @keyframes rfidPulse { 0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); } 50% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0.2); } 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); } }
+    .rfid-pulse-red { animation: rfidPulseRed 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    @keyframes rfidPulseRed { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 50% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0.2); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
 
     /* Progress bar */
     .progress-bar { background: #E2E8F0; border-radius: 99px; height: 6px; overflow: hidden; }
