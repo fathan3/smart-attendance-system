@@ -14,15 +14,6 @@
           </svg>
         </div>
         <div id="rfid-status" class="text-slate-500 text-sm mb-4">Tempelkan kartu RFID...</div>
-        <input
-          type="text"
-          id="rfid-input"
-          autofocus
-          name="rfid"
-          class="inp text-center text-lg font-display font-700 tracking-widest mb-3"
-          placeholder="atau ketik RFID"
-          maxlength="16"
-        >
         <div id="absen-result" class="mt-3 hidden"></div>
       </div>
 
