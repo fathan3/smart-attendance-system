@@ -6,6 +6,7 @@ use App\Models\Absensi;
 use App\Models\Acara;
 use App\Models\Agenda;
 use App\Models\Divisi;
+use App\Models\User;
 use DateTimeImmutable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -90,7 +91,7 @@ class AgendaController extends Controller
         // 1. UBAH DI SINI (hilangkan huruf 's')
         $absensi = DB::table('absensi')
         ->join('users', 'absensi.rfid_uid', '=', 'users.rfid_uid')->where('agenda_id', '=', $id_agenda)->orderBy('waktu_masuk', 'desc')->get() ;
-        
+        $nama = DB::table('users')->where('rfid_uid',$request->input('rfid'))->first();
 
         // 2. UBAH JUGA DI SINI (di dalam compact)
         $htmlTabel = view('partials.tabel_absensi', compact('absensi'))->render();
@@ -98,7 +99,8 @@ class AgendaController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Berhasil scan!',
-            'html' => $htmlTabel
+            'html' => $htmlTabel,
+            'nama' => $nama->name
         ]);
 
     } catch (\Exception $e) {

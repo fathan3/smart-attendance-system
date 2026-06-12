@@ -117,6 +117,7 @@
       .bg-white { border: 1px solid #ccc; box-shadow: none; }
     }
   </style>
+<script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
 </head>
 <body class="flex h-screen overflow-hidden">
 
@@ -139,17 +140,6 @@
   <!-- FOOTER -->
   @include('components.footer')
 </div>
-
-<!-- ══════════════════════════════════════════════════════════ MODALS -->
-
-<!-- Modal Tambah Mahasiswa -->
-
-
-<!-- Modal Tambah Acara -->
-
-
-<!-- Modal Detail Acara / Agenda -->
-
 
 <!-- Toast -->
 <div id="toast" class="fixed bottom-6 right-6 z-[9999] transition-all duration-300 opacity-0 translate-y-4 pointer-events-none">

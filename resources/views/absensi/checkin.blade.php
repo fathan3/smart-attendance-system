@@ -101,9 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ==========================================
-    // 3. FITUR CEGAH INPUT MANUAL (Hanya Scanner)
-    // ==========================================
+    // Cegah Input manual
     let lastKeyTime = 0;
     inputScan.addEventListener('keydown', function(e) {
         const currentTime = Date.now();
@@ -116,9 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
         lastKeyTime = currentTime;
     });
 
-    // ==========================================
-    // 4. FITUR AJAX SUBMIT & UPDATE TABEL
-    // ==========================================
     formScan.addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -144,11 +139,45 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             if(data.success) {
                 // JIKA BERHASIL: Munculkan pesan sukses dan timpa isi tabel
-                notifikasi.innerHTML = `<span class="text-green-600 font-bold">✅ ${data.message}</span>`;
+                notifikasi.innerHTML = `<span class="text-green-600 font-bold">Scan</span>`;
                 
                 if (tbodyAbsensi) {
                     tbodyAbsensi.innerHTML = data.html;
                 }
+                let timerInterval;
+                  Swal.fire({
+                    title: "Berhasil Checkin!",
+                    html: 
+                    `
+                    <table width="100%">
+                    <tr>
+                      <td>Nama</td>
+                      <td>${data.nama}</td>
+                    </tr>
+                    <tr>
+                      <td>Divisi</td>
+                      <td>Ini divisi</td>
+                    </tr>
+                    <table>
+                    `
+                    ,
+                    icon: "success",
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                      Swal.showLoading();
+                      const timer = Swal.getPopup().querySelector("b");
+                      timerInterval = setInterval(() => {
+                        timer.textContent = `${Swal.getTimerLeft()}`;
+                      }, 100);
+                    },
+                    willClose: () => {
+                      clearInterval(timerInterval);
+                    }
+                  }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) console.log("I was closed by the timer");
+                  });
             } else {
                 // JIKA GAGAL DARI LARAVEL: Munculkan pesan error asli dari PHP
                 notifikasi.innerHTML = `<span class="text-red-600 font-bold text-sm">❌ ${data.message}</span>`;
