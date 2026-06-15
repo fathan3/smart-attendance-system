@@ -21,6 +21,7 @@ Route::post('/panitia/store',[DivisiController::class,'store_panitia'])->name('p
 
 // Update
 Route::post('/acara/update/{id}', [AcaraController::class, 'update'])->name('acara.update');
+Route::post('/agenda/update/{id}', [AgendaController::class, 'update'])->name('agenda.update');
 
 //Delete
 Route::get('/acara/delete/{id}', [AcaraController::class, 'delete'])->name('acara.delete');

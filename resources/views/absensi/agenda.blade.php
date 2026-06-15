@@ -7,13 +7,13 @@
         <a href="/acara">Acara&nbsp;</a>/ 
         {{ $namaacara->nama }}
 </div>
-    <button class="btn-primary" onclick="showModal('modal-tambah-acara')">
+    <button class="btn-primary" id="tambah-acara"  onclick="showModal('modal-tambah-acara')">
       <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
       </svg>
       Tambah Agenda
     </button>
-    <button class="btn-primary" onclick="showModal('modal-tambah-divisi')">
+    <button class="btn-primary " id="tambah-divisi" onclick="showModal('modal-tambah-divisi')">
       <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
       </svg>
@@ -23,7 +23,7 @@
 
     <div class="flex gap-2 mb-4 border-b border-slate-200 no-print">
     <button 
-      onclick="switchTab('tab-daftar')" 
+      onclick="switchTab('tab-daftar', 'tambah-acara')" 
       id="btn-tab-daftar"
       class="px-4 py-3 font-500 text-sm border-b-2 border-blue-600 text-blue-600 transition"
     >
@@ -33,8 +33,8 @@
       Daftar Agenda
     </button>
     <button 
-      onclick="switchTab('tab-template')" 
-      id="btn-tab-template"
+      onclick="switchTab('tab-divisi', 'tambah-divisi')" 
+      id="btn-tab-divisi"
       class="px-4 py-3 font-500 text-sm border-b-2 border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300 transition"
     >
       <svg class="w-4 h-4 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -43,7 +43,7 @@
       Daftar Divisi
     </button>
     <button 
-      onclick="switchTab('tab-panitia')" 
+      onclick="switchTab('tab-panitia', '-')" 
       id="btn-tab-panitia"
       class="px-4 py-3 font-500 text-sm border-b-2 border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300 transition"
     >
@@ -103,7 +103,7 @@
               <td class="no-print">
                 <div class="flex gap-2">
                   <button class="py-1.5 px-3 text-xs bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition" onclick="showDetailModal('{{ $item->id }}', '{{ $item->nama }}', '{{ $item->checkin }}', '{{ $item->batas_checkin }}', '{{ $item->checkout ?? '' }}', '{{ $item->batas_checkout ?? '' }}')">Detail</button>
-                  <button class="btn-secondary py-1.5 px-3 text-xs">Edit</button>
+                  <button class="btn-secondary py-1.5 px-3 text-xs" onclick="showEditModal('{{ $item->id }}', '{{ $item->nama }}', '{{ $item->checkin }}', '{{ $item->batas_checkin }}', '{{ $item->checkout ?? '' }}', '{{ $item->batas_checkout ?? '' }}')" >Edit</button>
                   <button class="btn-danger py-1.5 px-3 text-xs">Hapus</button>
                 </div>
               </td>
@@ -116,7 +116,7 @@
     </div>
   </div>
 
-    <div id="tab-template" class="tab-content hidden">
+    <div id="tab-divisi" class="tab-content hidden">
     <div id="template-table" class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
       <table class="data-table">
         <thead>
@@ -419,6 +419,73 @@
   </div>
 </div>
 
+<div id="modal-edit-acara" class="modal-overlay hidden" onclick="closeModal(event,'modal-edit-acara')">
+  <div class="modal-box max-w-2xl" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 id="detail-acara-title" class="font-display font-800 text-slate-900 text-xl">Edit Agenda</h2>
+        <p id="detail-acara-sub" class="text-slate-500 text-sm mt-0.5"></p>
+      </div>
+      <button
+        onclick="closeModal(null,'modal-edit-acara')"
+        class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 transition"
+      >
+        ✕
+      </button>
+    </div>
+<form method="POST" action="" id="form-edit-agenda">
+      @csrf
+    <div class="space-y-4">
+      <div>
+        <label>Nama Agenda</label>
+        <input name="nama" required type="text" id="edit-agenda-nama" class="inp" placeholder="Contoh: Pembukaan">
+        <input name="acara_id" required type="hidden"  class="inp" value="{{ $namaacara->id }}">
+      </div>
+
+      <label><b>Checkin</b></label>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label>Jam Mulai Checkin</label>
+          <input type="datetime-local" id="edit-agenda-checkin" required name="checkin" class="inp">
+        </div>
+        <div>
+          <label>Jam Selesai Checkin</label>
+          <input type="datetime-local" required id="edit-agenda-batas-checkin" name="batas_checkin" class="inp">
+        </div>
+      </div>
+      <hr>
+      <label><b>Checkout</b></label>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label>Jam Mulai Checkout</label>
+          <input type="datetime-local" required id="edit-agenda-checkout" name="checkout" class="inp">
+        </div>
+        <div>
+          <label>Jam Selesai Checkout</label>
+          <input type="datetime-local" required id="edit-agenda-batas-checkout" name="batas_checkout" class="inp">
+        </div>
+      </div>
+
+          </div>
+        <div class="flex gap-3 mt-6">
+      <button
+        class="btn-secondary flex-1 justify-center"
+        onclick="closeModal(null,'modal-tambah-acara')"
+      >
+        Batal
+      </button>
+      <button type="submit"
+        class="btn-primary flex-1 justify-center"
+      >
+        Simpan
+      </button>
+    </div>
+     </form>
+
+        
+  </div>
+</div>
+
 @endsection
 
 <script>
@@ -433,15 +500,31 @@ function showDetailModal(id, nama, checkin, batasCheckin, checkout, batasCheckou
   showModal('modal-detail-acara');
 }
 
+function showEditModal(id, nama, checkin, batasCheckin, checkout, batasCheckout) {
+  document.getElementById('form-edit-agenda').action = `/agenda/update/${id}`
+  document.getElementById('edit-agenda-nama').value = nama;
+  document.getElementById('edit-agenda-checkin').value = checkin || '-';
+  document.getElementById('edit-agenda-batas-checkin').value = batasCheckin || '-';
+  document.getElementById('edit-agenda-checkout').value = checkout || '-';
+  document.getElementById('edit-agenda-batas-checkout').value = batasCheckout || '-';
+  
+  showModal('modal-edit-acara');
+}
+
 function printDetailAgenda() {
   window.print();
 }
 
-function switchTab(tabName) {
+function switchTab(tabName, btnName) {
   const tabs = document.querySelectorAll('.tab-content');
   tabs.forEach(tab => tab.classList.add('hidden'));
   
   const buttons = document.querySelectorAll('[id^="btn-tab-"]');
+  const tambah = document.querySelectorAll('[id^="tambah-"]');
+
+  tambah.forEach(bt => {
+    bt.classList.add('hidden')
+  })
   buttons.forEach(btn => {
     btn.classList.remove('border-blue-600', 'text-blue-600');
     btn.classList.add('border-transparent', 'text-slate-600', 'hover:text-slate-900', 'hover:border-slate-300');
@@ -459,10 +542,15 @@ function switchTab(tabName) {
   }
   
   localStorage.setItem('agendaActiveTab', tabName);
+  if(btnName != '-'){
+    btnn = document.getElementById(btnName)
+    btnn.classList.remove('hidden')
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
   const activeTab = localStorage.getItem('agendaActiveTab') || 'tab-daftar';
-  switchTab(activeTab);
+  switchTab(activeTab, 'tambah-acara');
 });
+
 </script>

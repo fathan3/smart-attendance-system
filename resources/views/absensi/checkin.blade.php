@@ -174,7 +174,10 @@ document.addEventListener('DOMContentLoaded', function() {
             inputScan.focus();
         });
     });
-
+  inputScan.addEventListener('blur',()=>{
+    inputScan.focus();
+  })
 });
+
 </script>
 @endsection

@@ -114,6 +114,7 @@ class AgendaController extends Controller
     return redirect()->route('checkin', $id_agenda);
 }
 
+
     /**
      * Display the specified resource.
      */
@@ -133,9 +134,20 @@ class AgendaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+        'nama'             => 'required|string|max:255',
+        'checkin'        => 'required',
+        'batas_checkin'    => 'required',
+        'checkout'    => 'required',
+        'batas_checkout'    => 'required',
+    ]);
+
+    $acara = Agenda::findOrFail($id);
+    $acara->update($data);
+    
+    return redirect()->route('acara.agenda', $request->input('acara_id'));
     }
 
     /**
