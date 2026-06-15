@@ -3,8 +3,7 @@
   class="w-64 h-screen flex-shrink-0 bg-white border-r border-slate-200 flex flex-col overflow-hidden z-50"
   style="transition: width 0.3s cubic-bezier(0.4,0,0.2,1);"
 >
-  <!-- Logo -->
-  <div class="flex items-center gap-3 px-5 py-5 border-b border-slate-200">
+    <div class="flex items-center gap-3 px-5 py-5 border-b border-slate-200">
     <img src="{{ asset('images/logo.png') }}" width="50px">
     <div class="sidebar-logo-text transition-all duration-300">
       <div class="font-display font-800 text-slate-900 text-base leading-tight">Absensi</div>
@@ -12,10 +11,8 @@
     </div>
   </div>
 
-  <!-- Navigation -->
-  <nav class="flex-1 overflow-y-auto px-3 py-4">
-    <!-- Main Menu Section -->
-    <div class="sidebar-section-title text-xs font-display font-600 text-slate-400 uppercase tracking-widest mb-2 px-2 transition-all duration-300">
+    <nav class="flex-1 overflow-y-auto px-3 py-4">
+        <div class="sidebar-section-title text-xs font-display font-600 text-slate-400 uppercase tracking-widest mb-2 px-2 transition-all duration-300">
       Menu Utama
     </div>
 
@@ -62,8 +59,7 @@
       <span class="nav-label">Absensi</span>
     </a>
 
-    <!-- Reports Section -->
-    <div class="sidebar-section-title text-xs font-display font-600 text-slate-400 uppercase tracking-widest mb-2 px-2 mt-5 transition-all duration-300">
+        <div class="sidebar-section-title text-xs font-display font-600 text-slate-400 uppercase tracking-widest mb-2 px-2 mt-5 transition-all duration-300">
       Laporan
     </div>
 
@@ -78,8 +74,7 @@
     </a>
   </nav>
 
-  <!-- Sidebar Footer -->
-  <div class="p-3 border-t border-slate-200">
+    <div class="p-3 border-t border-slate-200">
     <div class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-100 cursor-pointer transition">
       <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
         <span class="text-blue-600 font-display font-700 text-sm">A</span>

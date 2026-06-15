@@ -2,8 +2,7 @@
 @section('main-content')
 
 <div id="page-mahasiswa" class="page active">
-  <!-- Filter & Actions -->
-  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
     <div class="flex gap-2 flex-1 flex-wrap">
       <span> {{ $acara->nama }} / {{ $divisi->nama }} </span>
     </div>
@@ -23,8 +22,7 @@
     </div>
   </div>
 
-  <!-- Mahasiswa Table -->
-  <div id="mahasiswa-table" class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+    <div id="mahasiswa-table" class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
     <table class="data-table">
       <thead>
         <tr>
@@ -69,8 +67,7 @@
 
 <div id="modal-tambah-mahasiswa" class="modal-overlay hidden" onclick="closeModal(event, 'modal-tambah-mahasiswa')">
   <div class="modal-box" onclick="event.stopPropagation()">
-    <!-- Header -->
-    <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center justify-between mb-6">
       <div>
         <h2 class="font-display font-800 text-slate-900 text-xl">Tambah Panitia</h2>
         <p class="text-red-500 text-sm mt-0.5">Hanya bisa menambahkan panitia jika panitia yang ingin ditambahkan belum terdaftar di acara ini</p>
@@ -83,10 +80,8 @@
       </button>
     </div>
     <form action="{{route('panitia.store')}}" method="POST">
-    <!-- RFID Scan Section -->
-
-    <!-- Form -->
-    <div class="space-y-4 mb-4">
+    
+        <div class="space-y-4 mb-4">
       <div>
         <label>Nama Panitia</label>
         <select class="inp" name="user_id" id="panitia-select">
@@ -126,8 +121,7 @@
       </div>
     </div>
 
-    <!-- Actions -->
-    <div class="flex gap-3 mt-6">
+        <div class="flex gap-3 mt-6">
       <button
         class="btn-secondary flex-1 justify-center"
         onclick="closeModal(null,'modal-tambah-mahasiswa')"

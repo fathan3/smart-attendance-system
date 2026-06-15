@@ -121,34 +121,27 @@
 </head>
 <body class="flex h-screen overflow-hidden">
 
-<!-- ═══════════════════════════════════════════════════════════ SIDEBAR -->
   @include('components.sidebar')
 
 
-<!-- ═══════════════════════════════════════════════════════════ MAIN WRAPPER -->
 <div class="flex-1 flex flex-col overflow-hidden">
 
-  <!-- TOPBAR -->
-  @include('components.topbar')
+    @include('components.topbar')
 
-  <!-- CONTENT AREA -->
-  <main id="main-content" class="flex-1 overflow-y-auto bg-slate-50 p-6">
+    <main id="main-content" class="flex-1 overflow-y-auto bg-slate-50 p-6">
     
     @yield('main-content')
   </main>
 
-  <!-- FOOTER -->
-  @include('components.footer')
+    @include('components.footer')
 </div>
 
-<!-- Toast -->
 <div id="toast" class="fixed bottom-6 right-6 z-[9999] transition-all duration-300 opacity-0 translate-y-4 pointer-events-none">
   <div id="toast-inner" class="flex items-center gap-3 px-5 py-3 rounded-xl shadow-2xl text-sm font-500 bg-emerald-500 text-ink-900"></div>
 </div>
 
 <script>
   
-// ═══════════════════════════════════════════════ DATA
 const mahasiswaData = [
   { id: 1, rfid: 'A1B2C3D4', nama: 'Ahmad Fauzi', email: 'ahmad@kampus.ac.id', jabatan: 'Ketua', foto: '', status: 'aktif' },
   { id: 2, rfid: 'E5F6G7H8', nama: 'Siti Rahayu', email: 'siti@kampus.ac.id', jabatan: 'Sekretaris', foto: '', status: 'aktif' },
@@ -184,7 +177,6 @@ const absensiLog = [
   { mahasiswa: 'Rudi Hermawan', agenda: 'Seminar AI — Sesi I', masuk: '-', pulang: '-', status: 'tidak-hadir' },
 ];
 
-// ═══════════════════════════════════════════════ INIT
 window.onload = () => {
   startClock();
   renderMahasiswaTable(mahasiswaData);
@@ -193,7 +185,6 @@ window.onload = () => {
   initCharts();
 };
 
-// ═══════════════════════════════════════════════ NAVIGATION
 function navigate(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -205,12 +196,10 @@ function navigate(page) {
   if (page === 'laporan') setTimeout(initLaporanChart, 100);
 }
 
-// ═══════════════════════════════════════════════ SIDEBAR
 function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('collapsed');
 }
 
-// ═══════════════════════════════════════════════ CLOCK
 function startClock() {
   const update = () => {
     const now = new Date();
@@ -220,7 +209,6 @@ function startClock() {
   update(); setInterval(update, 1000);
 }
 
-// ═══════════════════════════════════════════════ MAHASISWA TABLE
 
 function filterTable(q) {
   const filtered = mahasiswaData.filter(m => m.nama.toLowerCase().includes(q.toLowerCase()) || m.rfid.toLowerCase().includes(q.toLowerCase()) || m.email.toLowerCase().includes(q.toLowerCase()));
@@ -269,7 +257,6 @@ function generateAgenda() {
 
 function addAgendaToAcara(id) { showToast('+ Tambah agenda ke acara #' + id, 'sky'); }
 
-// ═══════════════════════════════════════════════ ABSENSI
 function renderAbsensiLog() {
   const tbody = document.getElementById('absensi-tbody');
   tbody.innerHTML = absensiLog.map(a => {
@@ -300,7 +287,6 @@ function processAbsensi(type) {
   document.getElementById('rfid-input').value = '';
 }
 
-// ═══════════════════════════════════════════════ CHARTS
 function initCharts() {
   const days = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
   const hadir = [210, 195, 220, 205, 192, 180, 215];
@@ -362,13 +348,11 @@ function initLaporanChart() {
   ctx._chart = c;
 }
 
-// ═══════════════════════════════════════════════ MODAL
 function showModal(id) { document.getElementById(id).classList.remove('hidden'); }
 function closeModal(event, id) {
   if (!event || event.target === document.getElementById(id)) document.getElementById(id).classList.add('hidden');
 }
 
-// ═══════════════════════════════════════════════ TOAST
 let toastTimer;
 function showToast(msg, color = 'jade') {
   clearTimeout(toastTimer);
@@ -382,7 +366,6 @@ function showToast(msg, color = 'jade') {
   toastTimer = setTimeout(() => { t.classList.add('opacity-0', 'translate-y-4'); t.classList.remove('opacity-100', 'translate-y-0'); }, 3000);
 }
 
-// ═══════════════════════════════════════════════ PRINT
 function printSection(id) {
   const el = document.getElementById(id);
   if (!el) { window.print(); return; }

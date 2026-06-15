@@ -3,10 +3,8 @@
 
 <div id="page-absensi" class="page active">
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-    <!-- RFID Scanner Panel -->
-    <div class="lg:col-span-1">
-      <!-- Scanner -->
-      <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-6 text-center mb-4">
+        <div class="lg:col-span-1">
+            <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-6 text-center mb-4">
         <div class="font-display font-700 text-slate-900 mb-4">Chek-out {{ $agenda->nama }}</div>
         <div class="w-24 h-24 rounded-full border-2 border-red-600 mx-auto flex items-center justify-center rfid-pulse-red mb-4 relative">
           <svg class="w-10 h-10 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -17,8 +15,7 @@
         <div id="absen-result" class="mt-3 hidden"></div>
       </div>
 
-      <!-- Batas Waktu -->
-      <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-4">
+            <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-4">
         <div class="text-xs font-display font-600 uppercase tracking-wider text-slate-400 mb-3">Batas Waktu Absen</div>
         <div class="space-y-2">
           <div class="flex justify-between text-sm">
@@ -37,11 +34,9 @@
       </div>
     </div>
 
-    <!-- Log Absensi -->
-    <div class="lg:col-span-2">
+        <div class="lg:col-span-2">
       <div class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-        <!-- Header -->
-        <div class="flex items-center justify-between p-5 border-b border-slate-200">
+                <div class="flex items-center justify-between p-5 border-b border-slate-200">
           <h3 class="font-display font-700 text-slate-900">Log Absensi Hari Ini</h3>
           <button class="btn-secondary text-xs py-1.5 px-3 no-print" onclick="printSection('absensi-log')">
             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -51,8 +46,7 @@
           </button>
         </div>
 
-        <!-- Table -->
-        <div id="absensi-log">
+                <div id="absensi-log">
           <table class="data-table">
             <thead>
               <tr>
@@ -64,8 +58,7 @@
               </tr>
             </thead>
             <tbody id="absensi-tbody">
-              <!-- Populated by JS -->
-            </tbody>
+                          </tbody>
           </table>
         </div>
       </div>

@@ -2,8 +2,7 @@
 @section('main-content')
 
 <div id="page-dashboard" class="page active">
-  <!-- Stats Row -->
-  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
     <div class="bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 hover:shadow-md transition-all p-5">
       <div class="text-slate-400 text-xs font-display uppercase tracking-wider mb-3">Total Mahasiswa</div>
       <div class="font-display text-3xl font-800 text-slate-900 mb-1">{{ $stats['total_mahasiswa'] ?? 0 }}</div>
@@ -28,10 +27,8 @@
     </div>
   </div>
 
-  <!-- Activity + Leaderboard -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-    <!-- Activity -->
-    <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-5">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-5">
       <div class="flex items-center justify-between mb-4">
         <h3 class="font-display font-700 text-slate-900">Aktivitas Terbaru</h3>
         <a href="/laporan" class="text-xs text-blue-600 hover:underline">Lihat Semua</a>
@@ -60,8 +57,7 @@
       </div>
     </div>
 
-    <!-- Upcoming Events -->
-    <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-5">
+        <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-5">
       <div class="flex items-center justify-between mb-4">
         <h3 class="font-display font-700 text-slate-900">Acara Mendatang</h3>
         <a href="/acara" class="btn-secondary text-xs py-1.5 px-3 no-print">+ Tambah</a>

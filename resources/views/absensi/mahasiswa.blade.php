@@ -2,7 +2,6 @@
 @section('main-content')
 
 <div id="page-mahasiswa" class="page active">
-  <!-- Filter & Actions -->
   <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
     <div class="flex gap-2 flex-1 flex-wrap">
       <input
@@ -35,7 +34,6 @@
     </div>
   </div>
 
-  <!-- Mahasiswa Table -->
   <div id="mahasiswa-table" class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
     <table class="data-table">
       <thead>
@@ -79,10 +77,8 @@
   </div>
 </div>
 
-<!-- Modal: Tambah Mahasiswa -->
 <div id="modal-tambah-mahasiswa" class="modal-overlay hidden" onclick="closeModal(event, 'modal-tambah-mahasiswa')">
   <div class="modal-box" onclick="event.stopPropagation()">
-    <!-- Header -->
     <div class="flex items-center justify-between mb-6">
       <div>
         <h2 class="font-display font-800 text-slate-900 text-xl">Tambah Mahasiswa</h2>
@@ -96,7 +92,6 @@
       </button>
     </div>
     <form action="{{route('mahasiswa.store')}}" method="POST">
-    <!-- RFID Scan Section -->
     <div class="bg-slate-50 border border-dashed border-slate-300 rounded-xl p-4 mb-5 text-center relative overflow-hidden">
       <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
         <div class="w-48 h-48 border-2 border-blue-600 rounded-full"></div>
@@ -130,7 +125,6 @@
       </div>
     </div>
 
-    <!-- Form -->
     <div class="space-y-4 mb-4">
       <div>
         <label>Nama Lengkap</label>
@@ -145,7 +139,6 @@
       </div>
     </div>
 
-    <!-- Actions -->
     <div class="flex gap-3 mt-6">
       <button
         class="btn-secondary flex-1 justify-center"
@@ -183,23 +176,18 @@
   })
   
   let lastKeyTime = 0;
-  // Dengarkan setiap kali ada tombol yang ditekan di dalam input
   inputRfid.addEventListener('keydown', function(e) {
     const currentTime = Date.now();
     if (e.key === 'Enter') {
       e.preventDefault();
     }
     innerRfid.textContent = inputRfid.value
-    // Hitung jarak waktu antara ketikan sebelumnya dan saat ini
     const timeDifference = currentTime - lastKeyTime;
     
-    // Jika jeda waktu lebih dari 50 milidetik (artinya diketik manual oleh manusia)
-    // dan tombol yang ditekan bukanlah tombol 'Enter'
     if (timeDifference > 50 && e.key !== 'Enter') {
-      inputRfid.value = ''; // Langsung kosongkan input
+      inputRfid.value = '';
     }
     
-    // Perbarui waktu terakhir tombol ditekan
     lastKeyTime = currentTime;
   });
 </script>

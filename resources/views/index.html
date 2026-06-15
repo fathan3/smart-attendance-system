@@ -127,11 +127,9 @@
 </head>
 <body class="flex h-screen overflow-hidden">
 
-<!-- ═══════════════════════════════════════════════════════════ SIDEBAR -->
 <aside id="sidebar" class="w-64 h-screen flex-shrink-0 bg-ink-800 border-r border-ink-700 flex flex-col overflow-hidden z-50" style="transition: width 0.3s cubic-bezier(0.4,0,0.2,1);">
 
-  <!-- Logo -->
-  <div class="flex items-center gap-3 px-5 py-5 border-b border-ink-700">
+    <div class="flex items-center gap-3 px-5 py-5 border-b border-ink-700">
     <div class="w-9 h-9 rounded-xl bg-accent flex items-center justify-center flex-shrink-0">
       <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
     </div>
@@ -141,8 +139,7 @@
     </div>
   </div>
 
-  <!-- Nav -->
-  <nav class="flex-1 overflow-y-auto px-3 py-4">
+    <nav class="flex-1 overflow-y-auto px-3 py-4">
     <div class="sidebar-section-title text-xs font-display font-600 text-ink-500 uppercase tracking-widest mb-2 px-2 transition-all duration-300">Menu Utama</div>
     <a class="nav-item active" onclick="navigate('dashboard')">
       <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
@@ -168,8 +165,7 @@
     </a>
   </nav>
 
-  <!-- Sidebar Footer -->
-  <div class="p-3 border-t border-ink-700">
+    <div class="p-3 border-t border-ink-700">
     <div class="flex items-center gap-3 p-2 rounded-xl hover:bg-ink-700 cursor-pointer transition">
       <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
         <span class="text-accent font-display font-700 text-sm">A</span>
@@ -182,11 +178,9 @@
   </div>
 </aside>
 
-<!-- ═══════════════════════════════════════════════════════════ MAIN WRAPPER -->
 <div class="flex-1 flex flex-col overflow-hidden">
 
-  <!-- TOPBAR -->
-  <header id="topbar" class="h-16 bg-ink-800 border-b border-ink-700 flex items-center justify-between px-6 flex-shrink-0 z-40">
+    <header id="topbar" class="h-16 bg-ink-800 border-b border-ink-700 flex items-center justify-between px-6 flex-shrink-0 z-40">
     <div class="flex items-center gap-4">
       <button onclick="toggleSidebar()" class="w-9 h-9 rounded-lg bg-ink-700 hover:bg-ink-600 flex items-center justify-center transition">
         <svg class="w-4 h-4 text-ink-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -197,8 +191,7 @@
       </div>
     </div>
     <div class="flex items-center gap-3">
-      <!-- Clock -->
-      <div class="text-right hidden sm:block">
+            <div class="text-right hidden sm:block">
         <div id="clock" class="font-display text-white font-600 text-sm"></div>
         <div id="datestr" class="text-ink-400 text-xs"></div>
       </div>
@@ -209,13 +202,10 @@
     </div>
   </header>
 
-  <!-- CONTENT AREA -->
-  <main id="main-content" class="flex-1 overflow-y-auto bg-ink-900 p-6">
+    <main id="main-content" class="flex-1 overflow-y-auto bg-ink-900 p-6">
 
-    <!-- ══════════════════════════════ PAGE: DASHBOARD -->
-    <div id="page-dashboard" class="page active">
-      <!-- Stats Row -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div id="page-dashboard" class="page active">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div class="stat-card orange p-5">
           <div class="text-ink-500 text-xs font-display uppercase tracking-wider mb-3">Total Mahasiswa</div>
           <div class="font-display text-3xl font-800 text-white mb-1">248</div>
@@ -238,10 +228,8 @@
         </div>
       </div>
 
-      <!-- Charts Row -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
-        <!-- Bar chart -->
-        <div class="glass-card p-5 lg:col-span-2">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+                <div class="glass-card p-5 lg:col-span-2">
           <div class="flex items-center justify-between mb-4">
             <div>
               <h3 class="font-display font-700 text-white">Tren Kehadiran</h3>
@@ -254,8 +242,7 @@
           </div>
           <canvas id="attendanceChart" height="180"></canvas>
         </div>
-        <!-- Donut chart -->
-        <div class="glass-card p-5">
+                <div class="glass-card p-5">
           <div class="mb-4">
             <h3 class="font-display font-700 text-white">Status Hari Ini</h3>
             <p class="text-ink-400 text-xs mt-0.5">Distribusi kehadiran</p>
@@ -269,8 +256,7 @@
         </div>
       </div>
 
-      <!-- Activity + Leaderboard -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div class="glass-card p-5">
           <div class="flex items-center justify-between mb-4">
             <h3 class="font-display font-700 text-white">Aktivitas Terbaru</h3>
@@ -325,8 +311,7 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════ PAGE: MAHASISWA -->
-    <div id="page-mahasiswa" class="page">
+        <div id="page-mahasiswa" class="page">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
         <div class="flex gap-2 flex-1">
           <input type="text" class="inp max-w-xs" placeholder="Cari nama / RFID / email..." oninput="filterTable(this.value)">
@@ -357,14 +342,12 @@
             </tr>
           </thead>
           <tbody id="mahasiswa-tbody">
-            <!-- Populated by JS -->
-          </tbody>
+                      </tbody>
         </table>
       </div>
     </div>
 
-    <!-- ══════════════════════════════ PAGE: ACARA -->
-    <div id="page-acara" class="page">
+        <div id="page-acara" class="page">
       <div class="flex items-center justify-between mb-6">
         <div class="flex gap-2">
           <button class="btn-secondary no-print" onclick="printSection('acara-list')"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>Cetak</button>
@@ -372,15 +355,12 @@
         </div>
       </div>
       <div id="acara-list" class="space-y-4">
-        <!-- Populated by JS -->
-      </div>
+              </div>
     </div>
 
-    <!-- ══════════════════════════════ PAGE: ABSENSI -->
-    <div id="page-absensi" class="page">
+        <div id="page-absensi" class="page">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- RFID Scanner Panel -->
-        <div class="lg:col-span-1">
+                <div class="lg:col-span-1">
           <div class="glass-card p-6 text-center mb-4">
             <div class="font-display font-700 text-white mb-4">Scanner RFID</div>
             <div class="w-24 h-24 rounded-full border-2 border-accent mx-auto flex items-center justify-center rfid-pulse mb-4 relative">
@@ -401,8 +381,7 @@
             <div id="absen-result" class="mt-3 hidden"></div>
           </div>
 
-          <!-- Batas waktu -->
-          <div class="glass-card p-4">
+                    <div class="glass-card p-4">
             <div class="text-xs font-display font-600 uppercase tracking-wider text-ink-500 mb-3">Batas Waktu Absen</div>
             <div class="space-y-2">
               <div class="flex justify-between text-sm"><span class="text-ink-300">Absen Masuk</span><span class="text-white font-600">08:00 – 09:00</span></div>
@@ -412,8 +391,7 @@
           </div>
         </div>
 
-        <!-- Log Absensi -->
-        <div class="lg:col-span-2">
+                <div class="lg:col-span-2">
           <div class="glass-card overflow-hidden">
             <div class="flex items-center justify-between p-5 border-b border-ink-700">
               <h3 class="font-display font-700 text-white">Log Absensi Hari Ini</h3>
@@ -431,8 +409,7 @@
                   </tr>
                 </thead>
                 <tbody id="absensi-tbody">
-                  <!-- Populated by JS -->
-                </tbody>
+                                  </tbody>
               </table>
             </div>
           </div>
@@ -440,8 +417,7 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════ PAGE: LAPORAN -->
-    <div id="page-laporan" class="page">
+        <div id="page-laporan" class="page">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
         <div class="glass-card p-5">
           <div class="text-xs font-display uppercase tracking-wider text-ink-500 mb-2">Filter Laporan</div>
@@ -470,8 +446,7 @@
         </div>
       </div>
 
-      <!-- Laporan Detail Table -->
-      <div class="glass-card overflow-hidden">
+            <div class="glass-card overflow-hidden">
         <div class="flex items-center justify-between p-5 border-b border-ink-700">
           <h3 class="font-display font-700 text-white">Detail Kehadiran Per Mahasiswa</h3>
           <button class="btn-secondary text-xs py-1.5 px-3 no-print" onclick="window.print()"><svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>Cetak Semua</button>
@@ -491,16 +466,13 @@
 
   </main>
 
-  <!-- FOOTER -->
-  <footer class="h-10 bg-ink-800 border-t border-ink-700 flex items-center justify-between px-6 flex-shrink-0">
+    <footer class="h-10 bg-ink-800 border-t border-ink-700 flex items-center justify-between px-6 flex-shrink-0">
     <span class="text-ink-500 text-xs">© 2025 SiAbsen · Sistem Absensi Digital</span>
     <span class="text-ink-500 text-xs">v2.0.0 · Build 20250606</span>
   </footer>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════ MODALS -->
 
-<!-- Modal Tambah Mahasiswa -->
 <div id="modal-tambah-mahasiswa" class="modal-overlay hidden" onclick="closeModal(event, 'modal-tambah-mahasiswa')">
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="flex items-center justify-between mb-6">
@@ -508,8 +480,7 @@
       <button onclick="closeModal(null,'modal-tambah-mahasiswa')" class="w-8 h-8 rounded-lg bg-ink-700 hover:bg-ink-600 flex items-center justify-center text-ink-400 hover:text-white transition">✕</button>
     </div>
 
-    <!-- RFID Scan -->
-    <div class="bg-ink-800 border border-dashed border-ink-600 rounded-xl p-4 mb-5 text-center relative overflow-hidden">
+        <div class="bg-ink-800 border border-dashed border-ink-600 rounded-xl p-4 mb-5 text-center relative overflow-hidden">
       <div class="absolute inset-0 flex items-center justify-center opacity-5"><div class="w-48 h-48 border-2 border-accent rounded-full"></div></div>
       <div class="w-12 h-12 rounded-full border-2 border-accent mx-auto flex items-center justify-center rfid-pulse mb-2">
         <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/></svg>
@@ -553,7 +524,6 @@
   </div>
 </div>
 
-<!-- Modal Tambah Acara -->
 <div id="modal-tambah-acara" class="modal-overlay hidden" onclick="closeModal(event, 'modal-tambah-acara')">
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="flex items-center justify-between mb-6">
@@ -569,8 +539,7 @@
       <div><label>Lokasi</label><input type="text" class="inp" placeholder="Nama ruangan / tempat"></div>
       <div><label>Deskripsi</label><textarea class="inp h-20 resize-none" placeholder="Deskripsi singkat acara"></textarea></div>
 
-      <!-- Agenda Generator -->
-      <div class="border border-ink-600 rounded-xl p-4 bg-ink-800">
+            <div class="border border-ink-600 rounded-xl p-4 bg-ink-800">
         <div class="flex items-center justify-between mb-3">
           <div class="text-sm font-display font-600 text-white">Agenda Acara</div>
           <button class="btn-green text-xs py-1.5 px-3" onclick="addAgendaRow()"><svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>+ Agenda</button>
@@ -598,7 +567,6 @@
   </div>
 </div>
 
-<!-- Modal Detail Acara / Agenda -->
 <div id="modal-detail-acara" class="modal-overlay hidden" onclick="closeModal(event,'modal-detail-acara')">
   <div class="modal-box max-w-2xl" onclick="event.stopPropagation()">
     <div class="flex items-center justify-between mb-6">
@@ -613,13 +581,11 @@
   </div>
 </div>
 
-<!-- Toast -->
 <div id="toast" class="fixed bottom-6 right-6 z-[9999] transition-all duration-300 opacity-0 translate-y-4 pointer-events-none">
   <div id="toast-inner" class="flex items-center gap-3 px-5 py-3 rounded-xl shadow-2xl text-sm font-500 bg-jade text-ink-900"></div>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════ DATA
 const mahasiswaData = [
   { id: 1, rfid: 'A1B2C3D4', nama: 'Ahmad Fauzi', email: 'ahmad@kampus.ac.id', jabatan: 'Ketua', foto: '', status: 'aktif' },
   { id: 2, rfid: 'E5F6G7H8', nama: 'Siti Rahayu', email: 'siti@kampus.ac.id', jabatan: 'Sekretaris', foto: '', status: 'aktif' },
@@ -655,7 +621,6 @@ const absensiLog = [
   { mahasiswa: 'Rudi Hermawan', agenda: 'Seminar AI — Sesi I', masuk: '-', pulang: '-', status: 'tidak-hadir' },
 ];
 
-// ═══════════════════════════════════════════════ INIT
 window.onload = () => {
   startClock();
   renderMahasiswaTable(mahasiswaData);
@@ -664,7 +629,6 @@ window.onload = () => {
   initCharts();
 };
 
-// ═══════════════════════════════════════════════ NAVIGATION
 function navigate(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -676,12 +640,10 @@ function navigate(page) {
   if (page === 'laporan') setTimeout(initLaporanChart, 100);
 }
 
-// ═══════════════════════════════════════════════ SIDEBAR
 function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('collapsed');
 }
 
-// ═══════════════════════════════════════════════ CLOCK
 function startClock() {
   const update = () => {
     const now = new Date();
@@ -691,7 +653,6 @@ function startClock() {
   update(); setInterval(update, 1000);
 }
 
-// ═══════════════════════════════════════════════ MAHASISWA TABLE
 function renderMahasiswaTable(data) {
   const tbody = document.getElementById('mahasiswa-tbody');
   tbody.innerHTML = data.map(m => `
@@ -748,7 +709,6 @@ function previewFoto(input) {
   reader.readAsDataURL(file);
 }
 
-// ═══════════════════════════════════════════════ ACARA
 function renderAcaraList() {
   const container = document.getElementById('acara-list');
   container.innerHTML = acaraData.map(a => {
@@ -845,7 +805,6 @@ function generateAgenda() {
 
 function addAgendaToAcara(id) { showToast('+ Tambah agenda ke acara #' + id, 'sky'); }
 
-// ═══════════════════════════════════════════════ ABSENSI
 function renderAbsensiLog() {
   const tbody = document.getElementById('absensi-tbody');
   tbody.innerHTML = absensiLog.map(a => {
@@ -876,7 +835,6 @@ function processAbsensi(type) {
   document.getElementById('rfid-input').value = '';
 }
 
-// ═══════════════════════════════════════════════ CHARTS
 function initCharts() {
   const days = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
   const hadir = [210, 195, 220, 205, 192, 180, 215];
@@ -936,13 +894,11 @@ function initLaporanChart() {
   ctx._chart = c;
 }
 
-// ═══════════════════════════════════════════════ MODAL
 function showModal(id) { document.getElementById(id).classList.remove('hidden'); }
 function closeModal(event, id) {
   if (!event || event.target === document.getElementById(id)) document.getElementById(id).classList.add('hidden');
 }
 
-// ═══════════════════════════════════════════════ TOAST
 let toastTimer;
 function showToast(msg, color = 'jade') {
   clearTimeout(toastTimer);
@@ -956,7 +912,6 @@ function showToast(msg, color = 'jade') {
   toastTimer = setTimeout(() => { t.classList.add('opacity-0', 'translate-y-4'); t.classList.remove('opacity-100', 'translate-y-0'); }, 3000);
 }
 
-// ═══════════════════════════════════════════════ PRINT
 function printSection(id) {
   const el = document.getElementById(id);
   if (!el) { window.print(); return; }
@@ -982,7 +937,6 @@ function printSection(id) {
   win.document.close();
 }
 
-// ═══════════════════════════════════════════════ UTILS
 function formatDate(d) {
   const date = new Date(d);
   return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });

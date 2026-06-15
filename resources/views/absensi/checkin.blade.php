@@ -3,10 +3,8 @@
 
 <div id="page-absensi" class="page active">
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-    <!-- RFID Scanner Panel -->
-    <div class="lg:col-span-1">
-      <!-- Scanner -->
-      <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-6 text-center mb-4">
+        <div class="lg:col-span-1">
+            <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-6 text-center mb-4">
         <div class="font-display font-700 text-slate-900 mb-4">Chek-in {{ $agenda->nama }}</div>
         <div class="w-24 h-24 rounded-full border-2 border-blue-600 mx-auto flex items-center justify-center rfid-pulse mb-4 relative">
           <svg class="w-10 h-10 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -22,8 +20,7 @@
         <div id="absen-result" class="mt-3 hidden"></div>
       </div>
 
-      <!-- Batas Waktu -->
-      <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-4">
+            <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-4">
         <div class="text-xs font-display font-600 uppercase tracking-wider text-slate-400 mb-3">Batas Waktu Absen</div>
         <div class="space-y-2">
           <div class="flex justify-between text-sm">
@@ -38,11 +35,9 @@
       </div>
     </div>
 
-    <!-- Log Absensi -->
-    <div class="lg:col-span-2">
+        <div class="lg:col-span-2">
       <div class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-        <!-- Header -->
-        <div class="flex items-center justify-between p-5 border-b border-slate-200">
+                <div class="flex items-center justify-between p-5 border-b border-slate-200">
           <h3 class="font-display font-700 text-slate-900">Log Absensi Hari Ini</h3>
           <button class="btn-secondary text-xs py-1.5 px-3 no-print" onclick="printSection('absensi-log')">
             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -52,8 +47,7 @@
           </button>
         </div>
 
-        <!-- Table -->
-        <div id="absensi-log">
+                <div id="absensi-log">
           <table class="data-table">
             <thead>
               <tr>
@@ -75,39 +69,28 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ==========================================
-    // 1. DEKLARASI VARIABEL ELEMEN
-    // ==========================================
     const formScan = document.getElementById('form-scan');
     const inputScan = document.getElementById('scan');
     const notifikasi = document.getElementById('notifikasi');
     const tbodyAbsensi = document.getElementById('tabel-absensi');
     
-    // Target div yang memiliki animasi rfid
     const rfidPulseContainer = document.querySelector('.rfid-pulse'); 
 
-    // ==========================================
-    // 2. FITUR ANIMASI PULSE SAAT FOKUS
-    // ==========================================
     if (inputScan && rfidPulseContainer) {
-        // Tambahkan class animasi saat kursor aktif di input
         inputScan.addEventListener('focus', () => {
             rfidPulseContainer.classList.add('rfid-pulse');
         });
         
-        // Hapus class animasi saat kursor klik ke tempat lain
         inputScan.addEventListener('blur', () => {
             rfidPulseContainer.classList.remove('rfid-pulse');
         });
     }
 
-    // Cegah Input manual
     let lastKeyTime = 0;
     inputScan.addEventListener('keydown', function(e) {
         const currentTime = Date.now();
         const timeDifference = currentTime - lastKeyTime;
         
-        // Jika jeda ketikan > 50ms (artinya diketik jari) & bukan tombol Enter
         if (timeDifference > 50 && e.key !== 'Enter') {
             inputScan.value = ''; // Kosongkan input seketika
         }
@@ -138,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             if(data.success) {
-                // JIKA BERHASIL: Munculkan pesan sukses dan timpa isi tabel
                 notifikasi.innerHTML = `<span class="text-green-600 font-bold">Scan</span>`;
                 
                 if (tbodyAbsensi) {
@@ -179,18 +161,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (result.dismiss === Swal.DismissReason.timer) console.log("I was closed by the timer");
                   });
             } else {
-                // JIKA GAGAL DARI LARAVEL: Munculkan pesan error asli dari PHP
                 notifikasi.innerHTML = `<span class="text-red-600 font-bold text-sm">❌ ${data.message}</span>`;
                 console.error("Detail Error PHP:", data.message);
             }
         })
         .catch(error => {
-            // Jika error terjadi sebelum mencapai Controller (misal jaringan putus)
             console.error('Error Fetch:', error);
             notifikasi.innerHTML = `<span class="text-red-600 font-bold">❌ Gagal terhubung ke server.</span>`;
         })
         .finally(() => {
-            // Selalu kosongkan dan kembalikan kursor ke input agar siap scan kartu berikutnya
             inputScan.value = '';
             inputScan.focus();
         });

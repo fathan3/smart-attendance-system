@@ -2,10 +2,8 @@
 @section('main-content')
 
 <div id="page-laporan" class="page active">
-  <!-- Filter & Summary Row -->
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
-    <!-- Filter Panel -->
-    <div class="bg-white border border-slate-200/60 rounded-lg p-5">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+        <div class="bg-white border border-slate-200/60 rounded-lg p-5">
       <div class="text-xs font-medium text-slate-500 mb-3">Filter Laporan</div>
       <div class="space-y-3">
         <div>
@@ -36,8 +34,7 @@
       </div>
     </div>
 
-    <!-- Summary Panel -->
-    <div class="lg:col-span-2 bg-white border border-slate-200/60 rounded-lg p-5">
+        <div class="lg:col-span-2 bg-white border border-slate-200/60 rounded-lg p-5">
       <div class="flex items-center justify-between mb-4">
         <div>
           <h3 class="font-semibold text-slate-900">Ringkasan Laporan</h3>
@@ -79,8 +76,7 @@
     </div>
   </div>
 
-  <!-- Laporan Detail Table -->
-  <div class="bg-white border border-slate-200/60 rounded-lg overflow-hidden">
+    <div class="bg-white border border-slate-200/60 rounded-lg overflow-hidden">
     <div class="flex items-center justify-between p-5 border-b border-slate-200/60">
       <h3 class="font-semibold text-slate-900">Detail Kehadiran Per Mahasiswa</h3>
       <button class="btn-secondary text-xs py-1.5 px-3 no-print" onclick="window.print()">

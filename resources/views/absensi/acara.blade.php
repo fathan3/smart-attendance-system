@@ -2,8 +2,7 @@
 @section('main-content')
 
 <div id="page-acara" class="page active">
-  <!-- Header -->
-  <div class="flex items-center justify-between mb-6">
+    <div class="flex items-center justify-between mb-6">
     <div class="flex gap-2">
       <button class="btn-secondary no-print" onclick="printSection('acara-list')">
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -20,8 +19,7 @@
     </div>
   </div>
 
-  <!-- Content -->
-  <div id="acara-list" class="space-y-4">
+    <div id="acara-list" class="space-y-4">
     <div id="acara-table" class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
       <table class="data-table">
         <thead>
@@ -63,11 +61,9 @@
   </div>
 </div>
 
-<!-- Modal: Tambah Acara -->
 <div id="modal-tambah-acara" class="modal-overlay hidden" onclick="closeModal(event, 'modal-tambah-acara')">
   <div class="modal-box" onclick="event.stopPropagation()">
-    <!-- Header -->
-    <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center justify-between mb-6">
       <div>
         <h2 class="font-display font-800 text-slate-900 text-xl">Tambah Acara</h2>
         <p class="text-slate-500 text-sm mt-0.5">Buat acara baru</p>
@@ -80,8 +76,7 @@
       </button>
     </div>
 
-    <!-- Form -->
-     <form action="{{route('acara.store')}}" method="POST">
+         <form action="{{route('acara.store')}}" method="POST">
       @csrf
     <div class="space-y-4">
       <div>
@@ -112,8 +107,7 @@
       
     </div>
 
-    <!-- Actions -->
-    <div class="flex gap-3 mt-6">
+        <div class="flex gap-3 mt-6">
       <button
         class="btn-secondary flex-1 justify-center"
         onclick="closeModal(null,'modal-tambah-acara')"
@@ -128,15 +122,12 @@
       </button>
     </div>
 </form>
-    <!-- End Form -->
-  </div>
+      </div>
 </div>
 
-<!-- Modal: Detail Acara -->
 <div id="modal-detail-acara" class="modal-overlay hidden" onclick="closeModal(event,'modal-detail-acara')">
   <div class="modal-box max-w-2xl" onclick="event.stopPropagation()">
-    <!-- Header -->
-    <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center justify-between mb-6">
       <div>
         <h2 id="detail-acara-title" class="font-display font-800 text-slate-900 text-xl">Detail Acara</h2>
         <p id="detail-acara-sub" class="text-slate-500 text-sm mt-0.5"></p>
@@ -149,11 +140,9 @@
       </button>
     </div>
 
-    <!-- Content -->
-    <div id="detail-agenda-list" class="space-y-3"></div>
+        <div id="detail-agenda-list" class="space-y-3"></div>
 
-    <!-- Actions -->
-    <div class="mt-6 pt-6 border-t border-slate-200 flex gap-2">
+        <div class="mt-6 pt-6 border-t border-slate-200 flex gap-2">
       <button
         class="btn-primary flex-1 justify-center"
         onclick="closeModal(null,'modal-detail-acara');navigate('absensi')"

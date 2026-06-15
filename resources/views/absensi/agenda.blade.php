@@ -2,8 +2,7 @@
 @section('main-content')
 
 <div id="page-acara" class="page active">
-  <!-- Header -->
-  <div class="flex items-center justify-between mb-6">
+    <div class="flex items-center justify-between mb-6">
     <div class="text-sm flex items-center font-display font-600 uppercase tracking-wider text-slate-600 mb-3">
         <a href="/acara">Acara&nbsp;</a>/ 
         {{ $namaacara->nama }}
@@ -22,8 +21,7 @@
     </button>
   </div>
 
-  <!-- Tab Menu -->
-  <div class="flex gap-2 mb-4 border-b border-slate-200 no-print">
+    <div class="flex gap-2 mb-4 border-b border-slate-200 no-print">
     <button 
       onclick="switchTab('tab-daftar')" 
       id="btn-tab-daftar"
@@ -56,8 +54,7 @@
     </button>
   </div>
 
-  <!-- Tab Content: Daftar Agenda -->
-  <div id="tab-daftar" class="tab-content active">
+    <div id="tab-daftar" class="tab-content active">
     <div id="acara-list" class="space-y-4">
     <div id="agenda-table" class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
       <table class="data-table">
@@ -119,8 +116,7 @@
     </div>
   </div>
 
-  <!-- Tab Content: Tab Divisi -->
-  <div id="tab-template" class="tab-content hidden">
+    <div id="tab-template" class="tab-content hidden">
     <div id="template-table" class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
       <table class="data-table">
         <thead>
@@ -133,8 +129,7 @@
           </tr>
         </thead>
         <tbody id="template-tbody">
-          <!-- Baris template kosong -->
-           @foreach ($divisi as $idx => $div )
+                     @foreach ($divisi as $idx => $div )
              
            <tr class="bg-slate-50 border-b border-slate-100">
              <td class="text-slate-400">{{ $idx + 1 }}</td>
@@ -155,8 +150,7 @@
       </table>
     </div>
   </div>
-  <!-- Tab Content: Tab Panitia -->
-  <div id="tab-panitia" class="tab-content hidden">
+    <div id="tab-panitia" class="tab-content hidden">
     <div id="template-table" class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
       <table class="data-table">
         <thead>
@@ -171,8 +165,7 @@
           </tr>
         </thead>
         <tbody id="template-tbody">
-          <!-- Baris template kosong -->
-          <tr class="bg-slate-50 border-b border-slate-100">
+                    <tr class="bg-slate-50 border-b border-slate-100">
             <td class="text-slate-400">-</td>
             <td class="text-slate-400">-</td>
             <td class="text-slate-400">-</td>
@@ -222,11 +215,9 @@
     </div>
   </div>
 
-<!-- Modal: Tambah Agenda -->
 <div id="modal-tambah-acara" class="modal-overlay hidden" onclick="closeModal(event, 'modal-tambah-acara')">
   <div class="modal-box" onclick="event.stopPropagation()">
-    <!-- Header -->
-    <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center justify-between mb-6">
       <div>
         <h2 class="font-display font-800 text-slate-900 text-xl">Tambah Agenda</h2>
         <p class="text-slate-500 text-sm mt-0.5">Buat agenda baru untuk acara</p>
@@ -239,8 +230,7 @@
       </button>
     </div>
 
-    <!-- Form -->
-     <form method="POST" action="{{route('agenda.store')}}" >
+         <form method="POST" action="{{route('agenda.store')}}" >
       @csrf
     <div class="space-y-4">
       <input type="hidden" name="acara_id" value="{{ $namaacara->id }}">
@@ -273,10 +263,8 @@
         </div>
       </div>
 
-      <!-- Agenda Items -->
-    </div>
-    <!-- Actions -->
-    <div class="flex gap-3 mt-6">
+          </div>
+        <div class="flex gap-3 mt-6">
       <button
         class="btn-secondary flex-1 justify-center"
         onclick="closeModal(null,'modal-tambah-acara')"
@@ -294,8 +282,7 @@
 </div>
 <div id="modal-tambah-divisi" class="modal-overlay hidden" onclick="closeModal(event, 'modal-tambah-divisi')">
   <div class="modal-box" onclick="event.stopPropagation()">
-    <!-- Header -->
-    <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center justify-between mb-6">
       <div>
         <h2 class="font-display font-800 text-slate-900 text-xl">Tambah Divisi</h2>
         <p class="text-slate-500 text-sm mt-0.5">Tambah Divisi Baru di Acara <b>{{ $namaacara->nama }}</b></p>
@@ -308,8 +295,7 @@
       </button>
     </div>
 
-    <!-- Form -->
-     <form method="POST" action="{{route('divisi.store')}}" >
+         <form method="POST" action="{{route('divisi.store')}}" >
       @csrf
     <div class="space-y-4">
       <input type="hidden" name="acara_id" value="{{ $namaacara->id }}">
@@ -322,10 +308,8 @@
         <label>Deskripsi</label>
         <textarea name="deskripsi" id="" class="inp"></textarea>
       </div>
-      <!-- Agenda Items -->
-    </div>
-    <!-- Actions -->
-    <div class="flex gap-3 mt-6">
+          </div>
+        <div class="flex gap-3 mt-6">
       <button
         class="btn-secondary flex-1 justify-center"
         onclick="closeModal(null,'modal-tambah-divisi')"
@@ -342,11 +326,9 @@
   </div>
 </div>
 
-<!-- Modal: Detail Agenda -->
 <div id="modal-detail-acara" class="modal-overlay hidden" onclick="closeModal(event,'modal-detail-acara')">
   <div class="modal-box max-w-2xl" onclick="event.stopPropagation()">
-    <!-- Header -->
-    <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center justify-between mb-6">
       <div>
         <h2 id="detail-acara-title" class="font-display font-800 text-slate-900 text-xl">Detail Agenda</h2>
         <p id="detail-acara-sub" class="text-slate-500 text-sm mt-0.5"></p>
@@ -359,8 +341,7 @@
       </button>
     </div>
 
-    <!-- Content -->
-    <div class="space-y-4">
+        <div class="space-y-4">
       <div class="bg-slate-50 p-4 rounded-lg">
         <div class="grid grid-cols-2 gap-4">
           <div>
@@ -409,8 +390,7 @@
       </div>
     </div>
 
-    <!-- Actions -->
-    <div class="mt-6 pt-6 border-t border-slate-200 flex gap-2">
+        <div class="mt-6 pt-6 border-t border-slate-200 flex gap-2">
       <button
         class="btn-primary flex-1 justify-center"
         onclick="closeModal(null,'modal-detail-acara');navigate('absensi')"
@@ -444,14 +424,12 @@
 <script>
   const agenda = true
 function showDetailModal(id, nama, checkin, batasCheckin, checkout, batasCheckout) {
-  // Populate modal data
   document.getElementById('detail-nama').textContent = nama;
   document.getElementById('detail-checkin').textContent = checkin || '-';
   document.getElementById('detail-batas-checkin').textContent = batasCheckin || '-';
   document.getElementById('detail-checkout').textContent = checkout || '-';
   document.getElementById('detail-batas-checkout').textContent = batasCheckout || '-';
   
-  // Show modal
   showModal('modal-detail-acara');
 }
 
@@ -460,35 +438,29 @@ function printDetailAgenda() {
 }
 
 function switchTab(tabName) {
-  // Hide all tabs
   const tabs = document.querySelectorAll('.tab-content');
   tabs.forEach(tab => tab.classList.add('hidden'));
   
-  // Remove active state from all buttons
   const buttons = document.querySelectorAll('[id^="btn-tab-"]');
   buttons.forEach(btn => {
     btn.classList.remove('border-blue-600', 'text-blue-600');
     btn.classList.add('border-transparent', 'text-slate-600', 'hover:text-slate-900', 'hover:border-slate-300');
   });
   
-  // Show selected tab
   const selectedTab = document.getElementById(tabName);
   if (selectedTab) {
     selectedTab.classList.remove('hidden');
   }
   
-  // Add active state to clicked button
   const selectedButton = document.getElementById('btn-' + tabName);
   if (selectedButton) {
     selectedButton.classList.remove('border-transparent', 'text-slate-600', 'hover:text-slate-900', 'hover:border-slate-300');
     selectedButton.classList.add('border-blue-600', 'text-blue-600');
   }
   
-  // Simpan tab yang dipilih ke localStorage
   localStorage.setItem('agendaActiveTab', tabName);
 }
 
-// Restore active tab on page load
 document.addEventListener('DOMContentLoaded', function() {
   const activeTab = localStorage.getItem('agendaActiveTab') || 'tab-daftar';
   switchTab(activeTab);
