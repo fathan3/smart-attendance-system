@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class AcaraUser extends Pivot
 {
     protected $table = 'acara_user';
+
     protected $fillable = ['acara_id', 'user_id', 'divisi_id'];
 
     public function divisi(): BelongsTo

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Agenda extends Model
 {
     protected $table = 'agenda';
+
     protected $fillable = [
         'nama',
         'acara_id',
@@ -18,6 +19,7 @@ class Agenda extends Model
         'checkout',
         'batas_checkout',
     ];
+
     protected $casts = [
         'checkin' => 'datetime',
         'batas_checkin' => 'datetime',

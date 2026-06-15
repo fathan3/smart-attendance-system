@@ -11,13 +11,13 @@ return new class extends Migration
         Schema::create('absensi', function (Blueprint $table) {
             $table->id();
             $table->foreignId('agenda_id')
-                  ->constrained('agenda')
-                  ->cascadeOnDelete();
+                ->constrained('agenda')
+                ->cascadeOnDelete();
             $table->string('rfid_uid', 32)->nullable();
             $table->datetime('waktu_masuk')->nullable();
             $table->datetime('waktu_pulang')->nullable();
             $table->enum('status', ['hadir', 'terlambat', 'tidak_hadir', 'izin'])
-                  ->default('tidak_hadir');
+                ->default('tidak_hadir');
             $table->text('keterangan')->nullable();
             $table->timestamps();
 

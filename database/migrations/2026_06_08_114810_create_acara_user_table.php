@@ -11,13 +11,13 @@ return new class extends Migration
         Schema::create('acara_user', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
-                  ->constrained('users')
-                  ->cascadeOnDelete();
+                ->constrained('users')
+                ->cascadeOnDelete();
             $table->foreignId('divisi_id')
-                  ->constrained('divisi')
-                  ->restrictOnDelete();
+                ->constrained('divisi')
+                ->restrictOnDelete();
             $table->foreignId('acara_id')
-                  ->constrained('acara');
+                ->constrained('acara');
             $table->timestamps();
 
             $table->unique(['divisi_id', 'user_id']);

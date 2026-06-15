@@ -32,29 +32,33 @@ class DivisiController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-        'nama'             => 'required|string|max:255',
-        'deskripsi'        => 'required',
+            'nama' => 'required|string|max:255',
+            'deskripsi' => 'required',
         ]);
-        $completed_payload = array_merge($data, [ 'acara_id' => $request->input('acara_id')]);
+        $completed_payload = array_merge($data, ['acara_id' => $request->input('acara_id')]);
         Divisi::create($completed_payload);
+
         return redirect()->route('acara.agenda', $request->input('acara_id'));
 
     }
 
-    public function divisiAgenda($divisi_id){
+    public function divisiAgenda($divisi_id)
+    {
         $divisi = Divisi::find($divisi_id);
         $acara = Acara::find($divisi->acara_id);
-        $panitia_available = DB::table('users')->whereNotIn('id', function($query) use ($acara) {
+        $panitia_available = DB::table('users')->whereNotIn('id', function ($query) use ($acara) {
             $query->select('user_id')->from('acara_user')->where('acara_id', '=', $acara->id);
         })->get();
         $panitia = DB::table('acara_user')
-                    ->join('users', 'acara_user.user_id', '=', 'users.id')
-                    ->where('acara_user.divisi_id', '=', $divisi_id)->get();
+            ->join('users', 'acara_user.user_id', '=', 'users.id')
+            ->where('acara_user.divisi_id', '=', $divisi_id)->get();
+
         return view('absensi.panitia', compact('panitia', 'divisi', 'acara', 'panitia_available'));
     }
 
     // Menambahkan Panitia Baru
-    public function store_panitia(Request $request){
+    public function store_panitia(Request $request)
+    {
         $data = [
             'user_id' => $request->input('user_id'),
             'acara_id' => $request->input('acara_id'),
@@ -62,6 +66,7 @@ class DivisiController extends Controller
         ];
 
         AcaraUser::create($data);
+
         return redirect()->route('agenda.divisi', $request->input('divisi_id'));
 
     }

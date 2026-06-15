@@ -9,14 +9,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Absensi extends Model
 {
     protected $table = 'absensi';
+
     protected $fillable = [
         'agenda_id', 'user_id', 'rfid_uid',
         'waktu_masuk', 'waktu_pulang',
-        'status', 'keterangan'
+        'status', 'keterangan',
     ];
 
     protected $casts = [
-        'waktu_masuk'  => 'datetime',
+        'waktu_masuk' => 'datetime',
         'waktu_pulang' => 'datetime',
     ];
 

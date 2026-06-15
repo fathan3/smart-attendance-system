@@ -11,8 +11,8 @@ return new class extends Migration
         Schema::create('agenda', function (Blueprint $table) {
             $table->id();
             $table->foreignId('acara_id')
-                  ->constrained('acara')
-                  ->cascadeOnDelete();
+                ->constrained('acara')
+                ->cascadeOnDelete();
             $table->string('nama');
             $table->dateTime('checkin');
             $table->dateTime('checkout');

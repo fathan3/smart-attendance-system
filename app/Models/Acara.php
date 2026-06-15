@@ -10,13 +10,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Acara extends Model
 {
     protected $table = 'acara';
+
     protected $fillable = [
         'nama', 'deskripsi', 'tanggal_mulai',
-        'tanggal_selesai', 'lokasi', 'status'
+        'tanggal_selesai', 'lokasi', 'status',
     ];
 
     protected $casts = [
-        'tanggal_mulai'  => 'date',
+        'tanggal_mulai' => 'date',
         'tanggal_selesai' => 'date',
     ];
 
@@ -24,8 +25,8 @@ class Acara extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'acara_user')
-                    ->withPivot('divisi_id')
-                    ->withTimestamps();
+            ->withPivot('divisi_id')
+            ->withTimestamps();
     }
 
     public function agenda(): HasMany
