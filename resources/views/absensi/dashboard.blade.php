@@ -66,32 +66,6 @@
                     @endforelse
                 </div>
             </div>
-
-            <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-5">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="font-display font-700 text-slate-900">Acara Mendatang</h3>
-                    <a href="/acara" class="btn-secondary text-xs py-1.5 px-3 no-print">+ Tambah</a>
-                </div>
-                <div class="space-y-3">
-                    @forelse($acara_mendatang as $acara)
-                        <div
-                            class="p-3 rounded-xl border {{ $acara->status == 'aktif' ? 'border-blue-200 bg-blue-50/50' : 'border-slate-200 bg-white' }}">
-                            <div class="flex justify-between items-start mb-1">
-                                <span class="text-slate-900 text-sm font-600">{{ $acara->nama }}</span>
-                                <span
-                                    class="badge {{ $acara->status == 'aktif' ? 'badge-green' : 'badge-blue' }} text-xs">{{ ucfirst($acara->status) }}</span>
-                            </div>
-                            <div class="text-slate-500 text-xs">
-                                {{ \Carbon\Carbon::parse($acara->tanggal_mulai)->format('d M Y') }} &mdash;
-                                {{ \Carbon\Carbon::parse($acara->tanggal_selesai)->format('d M Y') }}</div>
-                            <div class="text-slate-500 text-xs mt-1">{{ $acara->agenda()->count() ?? 0 }} agenda &middot;
-                                {{ $acara->lokasi ?? '-' }}</div>
-                        </div>
-                    @empty
-                        <div class="text-center text-slate-500 text-sm py-4">Tidak ada acara mendatang</div>
-                    @endforelse
-                </div>
-            </div>
         </div>
     </div>
 @endsection

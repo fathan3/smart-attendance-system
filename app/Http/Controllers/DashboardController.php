@@ -12,7 +12,6 @@ class DashboardController extends Controller
     {
         $stats = [
             'total_mahasiswa' => User::where('is_active', true)->count(),
-            'acara_aktif' => Acara::where('status', 'aktif')->count(),
             'hadir_hari_ini' => Absensi::whereDate('waktu_masuk', today())
                 ->where('status', '!=', 'tidak_hadir')
                 ->count(),
@@ -23,11 +22,6 @@ class DashboardController extends Controller
             ->take(10)
             ->get();
 
-        $acara_mendatang = Acara::whereIn('status', ['draft', 'aktif'])
-            ->orderBy('tanggal_mulai')
-            ->take(5)
-            ->get();
-
-        return view('absensi.dashboard', compact('stats', 'aktivitas_terbaru', 'acara_mendatang'));
+        return view('absensi.dashboard', compact('stats', 'aktivitas_terbaru'));
     }
 }
