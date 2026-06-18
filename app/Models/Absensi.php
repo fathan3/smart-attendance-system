@@ -28,6 +28,6 @@ class Absensi extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'rfid_uid', 'rfid_uid');
     }
 }

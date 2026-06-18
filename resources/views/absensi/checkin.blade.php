@@ -15,11 +15,11 @@
                     </div>
                     <div id="rfid-status" class="text-slate-500 text-sm mb-4">Tempelkan kartu RFID...</div>
                     <form id="form-scan" method="POST" action="{{ route('checkin.agenda', $agenda->id) }}">
-                        @csrf <input type="text" autofocus class="inp" autocomplete="off" id="scan"
+                        @csrf <input type="text" autofocus class="inp" autocomplete="off" id="scan" style="opacity: 0;"
                             name="rfid" placeholder="Scan RFID di sini...">
                     </form>
 
-                    <div id="notifikasi" class="mt-4 text-sm font-semibold"></div>
+                    <div id="notifikasi" class="mt-4 text-sm font-semibold text-green-600 font-bold" style="margin-top: -45px; ">Scan</div>
                     <div id="absen-result" class="mt-3 hidden"></div>
                 </div>
 
@@ -136,39 +136,50 @@
                             if (tbodyAbsensi) {
                                 tbodyAbsensi.innerHTML = data.html;
                             }
-                            let timerInterval;
                             Swal.fire({
-                                title: "Berhasil Checkin!",
+                                title: '<div class="font-display font-bold text-2xl text-slate-800">Berhasil Check-in!</div>',
                                 html: `
-                    <table width="100%">
-                    <tr>
-                      <td>Nama</td>
-                      <td>${data.nama}</td>
-                    </tr>
-                    <tr>
-                      <td>Divisi</td>
-                      <td>Ini divisi</td>
-                    </tr>
-                    <table>
-                    `,
+                                    <div class="mt-2 text-left bg-slate-50 rounded-xl p-5 border border-slate-100 shadow-sm">
+                                        <div class="flex items-center mb-4">
+                                            <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-4">
+                                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-0.5">Nama Lengkap</p>
+                                                <p class="font-bold text-slate-800 text-lg">${data.nama}</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center mb-4">
+                                            <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center mr-4">
+                                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-0.5">Divisi</p>
+                                                <p class="font-bold text-slate-800 text-lg">${data.divisi || 'Ini divisi'}</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mr-4">
+                                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-0.5">Waktu Check-in</p>
+                                                <p class="font-bold text-slate-800 text-lg">${new Date().toLocaleTimeString('id-ID', {hour: '2-digit', minute:'2-digit', second:'2-digit'})}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `,
                                 icon: "success",
+                                showConfirmButton: false,
                                 timer: 3000,
                                 timerProgressBar: true,
-                                didOpen: () => {
-                                    Swal.showLoading();
-                                    const timer = Swal.getPopup().querySelector("b");
-                                    timerInterval = setInterval(() => {
-                                        timer.textContent =
-                                        `${Swal.getTimerLeft()}`;
-                                    }, 100);
-                                },
-                                willClose: () => {
-                                    clearInterval(timerInterval);
+                                customClass: {
+                                    popup: 'rounded-2xl border border-slate-100',
                                 }
                             }).then((result) => {
-                                /* Read more about handling dismissals below */
-                                if (result.dismiss === Swal.DismissReason.timer) console.log(
-                                    "I was closed by the timer");
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    console.log("I was closed by the timer");
+                                }
                             });
                         } else {
                             notifikasi.innerHTML =
