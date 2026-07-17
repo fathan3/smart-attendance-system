@@ -50,7 +50,7 @@
             </div>
             <div class="sidebar-logo-text transition-all duration-300 min-w-0">
                 <div class="text-slate-900 text-sm font-600 truncate">Admin</div>
-                <div class="text-slate-500 text-xs truncate">240411100119@student.trunojoyo.ac.id</div>
+                <div class="text-slate-500 text-xs truncate">HIMATIF 2026</div>
             </div>
         </div>
     </div>

@@ -491,11 +491,52 @@
                 box-shadow: none;
             }
         }
+
+        /* Loading Overlay */
+        #global-loader {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.5); /* Semi transparan */
+            backdrop-filter: blur(4px); /* Efek ngeblur untuk elemen di belakangnya */
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #global-loader.hidden-loader {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-logo {
+            width: 70px;
+            height: auto;
+            animation: flipAnimation 1.2s infinite ease-in-out;
+            transform-style: preserve-3d;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        @keyframes flipAnimation {
+            0% {
+                transform: perspective(400px) rotateY(0deg);
+            }
+            100% {
+                transform: perspective(400px) rotateY(360deg);
+            }
+        }
     </style>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
 </head>
 
 <body class="flex h-screen overflow-hidden">
+
+    <!-- Loading Screen -->
+    <div id="global-loader">
+        <img src="{{ asset('images/logo.png') }}" alt="Loading..." class="loader-logo">
+    </div>
 
     @include('components.sidebar')
 
@@ -678,6 +719,12 @@
         ];
 
         window.onload = () => {
+            // Sembunyikan loading screen setelah semua elemen termuat
+            setTimeout(() => {
+                const loader = document.getElementById('global-loader');
+                if(loader) loader.classList.add('hidden-loader');
+            }, 800); // 800ms delay agar animasi terlihat minimal sekali putaran
+
             startClock();
             renderMahasiswaTable(mahasiswaData);
             renderAcaraList();
@@ -1044,9 +1091,9 @@
     .tidak-hadir { background: #fef2f2; color: #e00; }
     @media print { body { padding: 0; } }
   </style></head><body>
-  <div class="header"><h1>SiAbsen · Laporan Absensi</h1><p style="color:#888;font-size:13px">Dicetak: ${new Date().toLocaleString('id-ID')}</p></div>
+  <div class="header"><h1>Laporan Absensi</h1><p style="color:#888;font-size:13px">Dicetak: ${new Date().toLocaleString('id-ID')}</p></div>
   ${el.innerHTML}
-  <script>window.onload=()=>{ window.print(); }<\/script>
+  <script>window.onload=()=>{ window.print(); }; window.onafterprint=()=>{ window.close(); };<\/script>
   </body></html>`);
             win.document.close();
         }
