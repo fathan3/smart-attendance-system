@@ -37,6 +37,6 @@ class User extends Authenticatable
 
     public function absensi(): HasMany
     {
-        return $this->hasMany(Absensi::class);
+        return $this->hasMany(Absensi::class, 'rfid_uid', 'rfid_uid');
     }
 }

@@ -21,13 +21,13 @@
                     data-tgl-selesai="{{ $acr->tanggal_selesai->format('Y-m-d') }}"
                     data-lokasi="{{ $acr->lokasi }}" data-deskripsi="{{ $acr->deskripsi }}"
                     onclick="openEditAcara(this)">Edit</button>
-                <a href="{{ route('acara.delete', ['id' => encrypt($acr->id)]) }}" class="btn-danger py-1.5 px-3 text-xs"
-                    onclick="return confirm('Apakah Anda yakin ingin menghapus acara ini?')">Hapus</a>
+                <button class="btn-danger py-1.5 px-3 text-xs"
+                    onclick="confirmDeleteAcara('{{ encrypt($acr->id) }}', '{{ addslashes($acr->nama) }}')">Hapus</button>
             </div>
         </td>
     </tr>
     @empty
     <tr>
-        <td colspan="6" class="p-3 text-center text-slate-500">Belum ada data absensi.</td>
+        <td colspan="6" class="p-3 text-center text-slate-500">Belum ada data acara.</td>
     </tr>
 @endforelse

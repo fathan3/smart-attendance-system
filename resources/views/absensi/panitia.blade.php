@@ -55,10 +55,7 @@
                                 </span>
                             </td>
                             <td class="no-print">
-                                <div class="flex gap-2">
-                                    <button class="btn-secondary py-1.5 px-3 text-xs">Edit</button>
-                                    <button class="btn-danger py-1.5 px-3 text-xs">Hapus</button>
-                                </div>
+                                <button class="btn-danger py-1.5 px-3 text-xs" onclick="confirmDeletePanitia('{{ encrypt($mhs->pivot_id) }}', '{{ addslashes($mhs->name) }}')">Hapus</button>
                             </td>
                         </tr>
                     @endforeach
@@ -81,7 +78,7 @@
                 </button>
             </div>
             <form action="{{ route('panitia.store') }}" method="POST">
-
+                @csrf
                 <div class="space-y-4 mb-4">
                     <div>
                         <label>Nama Panitia</label>
@@ -123,7 +120,7 @@
                 </div>
 
                 <div class="flex gap-3 mt-6">
-                    <button class="btn-secondary flex-1 justify-center" onclick="closeModal(null,'modal-tambah-mahasiswa')">
+                    <button type="button" class="btn-secondary flex-1 justify-center" onclick="closeModal(null,'modal-tambah-mahasiswa')">
                         Batal
                     </button>
                     <button class="btn-primary flex-1 justify-center" id="simpan" type="submit">
@@ -140,18 +137,41 @@
         const rfidspan = document.getElementById('rfid-span')
         const emailspan = document.getElementById('email-span')
         const simpan = document.getElementById('simpan')
-        panitiaselect.addEventListener('change', (e) => {
-            let selected_id = panitiaselect.value
-            panitia.forEach(element => {
-                if (element['id'] == selected_id) {
-                    rfidspan.innerHTML = element['rfid_uid']
-                    emailspan.innerHTML = element['email']
+
+        function updatePanitiaDetail() {
+            let selected_id = panitiaselect.value;
+            let found = panitia.find(p => p.id == selected_id);
+            if (found) {
+                rfidspan.textContent = found.rfid_uid || '-';
+                emailspan.textContent = found.email || '-';
+                simpan.removeAttribute('disabled');
+            } else {
+                rfidspan.textContent = '-';
+                emailspan.textContent = '-';
+                simpan.setAttribute('disabled', '');
+            }
+        }
+
+        if (panitiaselect) {
+            panitiaselect.addEventListener('change', updatePanitiaDetail);
+            updatePanitiaDetail();
+        }
+
+        function confirmDeletePanitia(encryptedId, nama) {
+            Swal.fire({
+                title: 'Hapus Panitia?',
+                text: `Apakah Anda yakin ingin menghapus "${nama}" dari divisi ini?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#EF4444',
+                cancelButtonColor: '#64748B',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = `/panitia/delete/${encryptedId}`;
                 }
             });
-        })
-
-        if(panitiaselect.value === '-'){
-            simpan.setAttribute('disabled', '')
         }
     </script>
 @endsection

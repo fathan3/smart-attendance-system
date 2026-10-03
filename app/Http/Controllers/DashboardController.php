@@ -15,6 +15,7 @@ class DashboardController extends Controller
             'hadir_hari_ini' => Absensi::whereDate('waktu_masuk', today())
                 ->where('status', '!=', 'tidak_hadir')
                 ->count(),
+            'acara_aktif' => Acara::whereDate('tanggal_selesai', '>=', today())->count(),
         ];
 
         $aktivitas_terbaru = Absensi::with(['user', 'agenda.acara'])

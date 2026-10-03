@@ -6,7 +6,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div class="lg:col-span-1">
                 <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-6 text-center mb-4">
-                    <div class="font-display font-700 text-slate-900 mb-4">Chek-out {{ $agenda->nama }}</div>
+                    <div class="font-display font-700 text-slate-900 mb-4">Check-out {{ $agenda->nama }}</div>
                     <div
                         class="w-24 h-24 rounded-full border-2 border-red-600 mx-auto flex items-center justify-center rfid-pulse-red mb-4 relative">
                         <svg class="w-10 h-10 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -30,15 +30,13 @@
                     <div class="space-y-2">
                         <div class="flex justify-between text-sm">
                             <span class="text-slate-600">Absen Masuk</span>
-                            <span class="text-slate-900 font-600">{{ $agenda->jam_mulai }}</span>
-                        </div>
-                        <div class="flex justify-between text-sm">
-                            <span class="text-slate-600">Batas Terlambat</span>
-                            <span class="text-blue-600 font-600">09:01 – 09:30</span>
+                            <span class="text-blue-600 font-600">{{ $agenda->checkin ? $agenda->checkin->format('H:i') : '-' }} -
+                                {{ $agenda->batas_checkin ? $agenda->batas_checkin->format('H:i') : '-' }}</span>
                         </div>
                         <div class="flex justify-between text-sm">
                             <span class="text-slate-600">Absen Pulang</span>
-                            <span class="text-slate-900 font-600">15:00 – 17:00</span>
+                            <span class="text-red-600 font-600">{{ $agenda->checkout ? $agenda->checkout->format('H:i') : '-' }} -
+                                {{ $agenda->batas_checkout ? $agenda->batas_checkout->format('H:i') : '-' }}</span>
                         </div>
                     </div>
                 </div>
@@ -88,15 +86,15 @@
             const notifikasi = document.getElementById('notifikasi');
             const tbodyAbsensi = document.getElementById('absensi-tbody');
 
-            const rfidPulseContainer = document.querySelector('.rfid-pulse');
+            const rfidPulseContainer = document.querySelector('.rfid-pulse-red') || document.querySelector('.rfid-pulse');
 
             if (inputScan && rfidPulseContainer) {
                 inputScan.addEventListener('focus', () => {
-                    rfidPulseContainer.classList.add('rfid-pulse');
+                    rfidPulseContainer.classList.add('rfid-pulse-red');
                 });
 
                 inputScan.addEventListener('blur', () => {
-                    rfidPulseContainer.classList.remove('rfid-pulse');
+                    rfidPulseContainer.classList.remove('rfid-pulse-red');
                 });
             }
 
@@ -128,7 +126,7 @@
                             'Content-Type': 'application/json',
                             'X-CSRF-TOKEN': csrfToken,
                             'Accept': 'application/json',
-                            'X-Requested-With': 'XMLHttpRequest' // Memastikan Laravel mendeteksi request sebagai AJAX
+                            'X-Requested-With': 'XMLHttpRequest'
                         },
                         body: JSON.stringify({
                             rfid: rfidValue
@@ -143,7 +141,7 @@
                                 tbodyAbsensi.innerHTML = data.html;
                             }
                             Swal.fire({
-                                title: '<div class="font-display font-bold text-2xl text-slate-800">Berhasil Check-in!</div>',
+                                title: '<div class="font-display font-bold text-2xl text-slate-800">Berhasil Check-out!</div>',
                                 html: `
                                     <div class="mt-2 text-left bg-slate-50 rounded-xl p-5 border border-slate-100 shadow-sm">
                                         <div class="flex items-center mb-4">
@@ -161,7 +159,7 @@
                                             </div>
                                             <div>
                                                 <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-0.5">Divisi</p>
-                                                <p class="font-bold text-slate-800 text-lg">${data.divisi || 'Ini divisi'}</p>
+                                                <p class="font-bold text-slate-800 text-lg">${data.divisi || '-'}</p>
                                             </div>
                                         </div>
                                         <div class="flex items-center">
@@ -169,7 +167,7 @@
                                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                             </div>
                                             <div>
-                                                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-0.5">Waktu Check-in</p>
+                                                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-0.5">Waktu Check-out</p>
                                                 <p class="font-bold text-slate-800 text-lg">${new Date().toLocaleTimeString('id-ID', {hour: '2-digit', minute:'2-digit', second:'2-digit'})}</p>
                                             </div>
                                         </div>
@@ -177,14 +175,10 @@
                                 `,
                                 icon: "success",
                                 showConfirmButton: false,
-                                timer: 1000,
+                                timer: 1200,
                                 timerProgressBar: true,
                                 customClass: {
                                     popup: 'rounded-2xl border border-slate-100',
-                                }
-                            }).then((result) => {
-                                if (result.dismiss === Swal.DismissReason.timer) {
-                                    console.log("I was closed by the timer");
                                 }
                             });
                         } else {

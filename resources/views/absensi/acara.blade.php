@@ -273,5 +273,22 @@
                     });
             })
         })
+
+        function confirmDeleteAcara(encryptedId, nama) {
+            Swal.fire({
+                title: 'Hapus Acara?',
+                text: `Apakah Anda yakin ingin menghapus acara "${nama}"? Semua agenda, divisi, dan data absensi di dalamnya akan ikut terhapus.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#EF4444',
+                cancelButtonColor: '#64748B',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = `/acara/delete/${encryptedId}`;
+                }
+            });
+        }
     </script>
 @endsection

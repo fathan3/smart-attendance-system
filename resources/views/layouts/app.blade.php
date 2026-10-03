@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Smart Attedance</title>
+    <title>Smart Attendance</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -561,175 +561,14 @@
     </div>
 
     <script>
-        const mahasiswaData = [{
-                id: 1,
-                rfid: 'A1B2C3D4',
-                nama: 'Ahmad Fauzi',
-                email: 'ahmad@kampus.ac.id',
-                jabatan: 'Ketua',
-                foto: '',
-                status: 'aktif'
-            },
-            {
-                id: 2,
-                rfid: 'E5F6G7H8',
-                nama: 'Siti Rahayu',
-                email: 'siti@kampus.ac.id',
-                jabatan: 'Sekretaris',
-                foto: '',
-                status: 'aktif'
-            },
-            {
-                id: 3,
-                rfid: 'I9J0K1L2',
-                nama: 'Budi Santoso',
-                email: 'budi@kampus.ac.id',
-                jabatan: 'Anggota',
-                foto: '',
-                status: 'aktif'
-            },
-            {
-                id: 4,
-                rfid: 'M3N4O5P6',
-                nama: 'Dewi Lestari',
-                email: 'dewi@kampus.ac.id',
-                jabatan: 'Bendahara',
-                foto: '',
-                status: 'aktif'
-            },
-            {
-                id: 5,
-                rfid: 'Q7R8S9T0',
-                nama: 'Rudi Hermawan',
-                email: 'rudi@kampus.ac.id',
-                jabatan: 'Anggota',
-                foto: '',
-                status: 'nonaktif'
-            },
-        ];
-
-        const acaraData = [{
-                id: 1,
-                nama: 'Seminar Nasional AI 2025',
-                tanggalMulai: '2025-06-06',
-                tanggalSelesai: '2025-06-06',
-                lokasi: 'Aula Utama',
-                deskripsi: 'Seminar tentang perkembangan AI di Indonesia',
-                status: 'aktif',
-                agenda: [{
-                        id: 1,
-                        nama: 'Pembukaan & Registrasi',
-                        mulai: '07:30',
-                        selesai: '08:00',
-                        batasAbsen: '08:15'
-                    },
-                    {
-                        id: 2,
-                        nama: 'Sesi I: AI Fundamentals',
-                        mulai: '08:00',
-                        selesai: '10:00',
-                        batasAbsen: '08:30'
-                    },
-                    {
-                        id: 3,
-                        nama: 'Sesi II: Applied AI',
-                        mulai: '13:00',
-                        selesai: '15:00',
-                        batasAbsen: '13:30'
-                    },
-                ]
-            },
-            {
-                id: 2,
-                nama: 'Workshop UI/UX Design',
-                tanggalMulai: '2025-06-07',
-                tanggalSelesai: '2025-06-07',
-                lokasi: 'Lab Komputer 2',
-                deskripsi: 'Workshop praktis desain antarmuka',
-                status: 'upcoming',
-                agenda: [{
-                        id: 4,
-                        nama: 'Materi Figma Dasar',
-                        mulai: '09:00',
-                        selesai: '11:00',
-                        batasAbsen: '09:20'
-                    },
-                    {
-                        id: 5,
-                        nama: 'Praktik Desain',
-                        mulai: '13:00',
-                        selesai: '15:00',
-                        batasAbsen: '13:15'
-                    },
-                ]
-            },
-            {
-                id: 3,
-                nama: 'Rapat Himpunan Mahasiswa',
-                tanggalMulai: '2025-06-09',
-                tanggalSelesai: '2025-06-09',
-                lokasi: 'Ruang Rapat',
-                deskripsi: 'Rapat koordinasi bulanan',
-                status: 'upcoming',
-                agenda: [{
-                    id: 6,
-                    nama: 'Rapat Pleno',
-                    mulai: '13:00',
-                    selesai: '17:00',
-                    batasAbsen: '13:30'
-                }]
-            },
-        ];
-
-        const absensiLog = [{
-                mahasiswa: 'Ahmad Fauzi',
-                agenda: 'Seminar AI — Sesi I',
-                masuk: '07:58',
-                pulang: '10:05',
-                status: 'hadir'
-            },
-            {
-                mahasiswa: 'Siti Rahayu',
-                agenda: 'Seminar AI — Sesi I',
-                masuk: '08:02',
-                pulang: '10:00',
-                status: 'hadir'
-            },
-            {
-                mahasiswa: 'Budi Santoso',
-                agenda: 'Seminar AI — Sesi I',
-                masuk: '09:15',
-                pulang: '10:08',
-                status: 'terlambat'
-            },
-            {
-                mahasiswa: 'Dewi Lestari',
-                agenda: 'Seminar AI — Sesi I',
-                masuk: '07:55',
-                pulang: '10:02',
-                status: 'hadir'
-            },
-            {
-                mahasiswa: 'Rudi Hermawan',
-                agenda: 'Seminar AI — Sesi I',
-                masuk: '-',
-                pulang: '-',
-                status: 'tidak-hadir'
-            },
-        ];
-
         window.onload = () => {
             // Sembunyikan loading screen setelah semua elemen termuat
             setTimeout(() => {
                 const loader = document.getElementById('global-loader');
-                if(loader) loader.classList.add('hidden-loader');
-            }, 800); // 800ms delay agar animasi terlihat minimal sekali putaran
+                if (loader) loader.classList.add('hidden-loader');
+            }, 500);
 
             startClock();
-            renderMahasiswaTable(mahasiswaData);
-            renderAcaraList();
-            renderAbsensiLog();
-            initCharts();
         };
 
         function navigate(page) {
@@ -1077,18 +916,20 @@
                 return;
             }
             const win = window.open('', '_blank');
-            win.document.write(`<!DOCTYPE html><html><head><title>SiAbsen - Laporan</title>
+            win.document.write(`<!DOCTYPE html><html><head><title>Smart Attendance System - Laporan</title>
   <style>
     body { font-family: 'DM Sans', Arial, sans-serif; color: #111; background: #fff; padding: 32px; }
     table { width: 100%; border-collapse: collapse; }
     th { background: #f0f0f0; padding: 10px 14px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: #555; }
     td { padding: 10px 14px; border-bottom: 1px solid #eee; font-size: 13px; color: #333; }
     h1 { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
-    .header { border-bottom: 2px solid #FF4D00; padding-bottom: 12px; margin-bottom: 24px; }
+    .header { border-bottom: 2px solid #3B82F6; padding-bottom: 12px; margin-bottom: 24px; }
     .badge { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 600; }
     .hadir { background: #e8faf4; color: #00a87a; }
     .terlambat { background: #fff1eb; color: #FF4D00; }
     .tidak-hadir { background: #fef2f2; color: #e00; }
+    .no-print { display: none !important; }
+    .print-only { display: inline-block !important; }
     @media print { body { padding: 0; } }
   </style></head><body>
   <div class="header"><h1>Laporan Absensi</h1><p style="color:#888;font-size:13px">Dicetak: ${new Date().toLocaleString('id-ID')}</p></div>
@@ -1112,6 +953,47 @@
             localStorage.removeItem('agendaActiveTab')
         }
     </script>
+
+    @if(session('success'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: "{{ session('success') }}",
+                timer: 3000,
+                showConfirmButton: false,
+                timerProgressBar: true
+            });
+        });
+    </script>
+    @endif
+
+    @if(session('error'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Perhatian!',
+                text: "{{ session('error') }}",
+                confirmButtonColor: '#EF4444',
+            });
+        });
+    </script>
+    @endif
+
+    @if($errors->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Validasi Gagal!',
+                html: '{!! implode("<br>", $errors->all()) !!}',
+                confirmButtonColor: '#EF4444',
+            });
+        });
+    </script>
+    @endif
 </body>
 
 </html>

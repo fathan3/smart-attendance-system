@@ -17,7 +17,8 @@ class MahasiswaController extends Controller
             ->when($request->divisi, fn ($q, $v) => $q->whereHas('acara', fn ($q) => $q->wherePivot('divisi_id', $v)
             )
             )
-            ->paginate(20);
+            ->orderBy('name', 'asc')
+            ->get();
 
         return view('absensi.mahasiswa', compact('mahasiswa'));
     }
@@ -26,13 +27,16 @@ class MahasiswaController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'rfid_uid' => 'required|string|unique:users',
+            'rfid_uid' => 'required|string|unique:users,rfid_uid',
+            'email' => 'nullable|email|unique:users,email',
         ]);
-        $completed_payload = array_merge($data, [
-            'password' => '123',
-            'is_active' => '1',
-        ]);
+        $completed_payload = [
+            'name' => $data['name'],
+            'rfid_uid' => $data['rfid_uid'],
+            'email' => $request->filled('email') ? $request->input('email') : null,
+            'password' => bcrypt('123'),
+            'is_active' => 1,
+        ];
 
         User::create($completed_payload);
 
@@ -44,15 +48,29 @@ class MahasiswaController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email',
+            'rfid_uid' => 'required|string|unique:users,rfid_uid,'.$id,
+            'email' => 'nullable|email|unique:users,email,'.$id,
         ]);
-        $completed_payload = array_merge($data, [
-            'is_active' => $request->input('status')
-        ]);
+        $completed_payload = [
+            'name' => $data['name'],
+            'rfid_uid' => $data['rfid_uid'],
+            'email' => $request->filled('email') ? $request->input('email') : null,
+            'is_active' => $request->input('status') == '1' ? 1 : 0,
+        ];
 
         $mhs = User::findOrFail($id);
         $mhs->update($completed_payload);
         return redirect()->route('mahasiswa.index')
-            ->with('success', 'Data mahasiswa diperbarui.');
+            ->with('success', 'Data mahasiswa berhasil diperbarui.');
+    }
+
+    public function delete($id)
+    {
+        $id = decrypt($id);
+        $mhs = User::findOrFail($id);
+        $mhs->delete();
+
+        return redirect()->route('mahasiswa.index')
+            ->with('success', 'Data mahasiswa berhasil dihapus.');
     }
 }

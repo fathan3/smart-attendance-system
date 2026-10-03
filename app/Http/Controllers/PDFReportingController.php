@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 date_default_timezone_set('Asia/Jakarta');
 
-class PDFreportingController extends Controller
+class PDFReportingController extends Controller
 {
     public function generatePDF($agenda_id)
     {   
         $agenda_id = decrypt($agenda_id);
-        $agenda = Agenda::find($agenda_id);
-        $acara = Acara::find($agenda->acara_id);
+        $agenda = Agenda::findOrFail($agenda_id);
+        $acara = Acara::findOrFail($agenda->acara_id);
         $absensi = DB::table('acara_user')
                     ->join('users', 'users.id', '=', 'acara_user.user_id')
                     ->leftJoin('absensi', function ($join) use ($agenda_id) {

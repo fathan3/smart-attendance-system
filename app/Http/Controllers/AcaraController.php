@@ -84,8 +84,10 @@ class AcaraController extends Controller
     {
         $id = decrypt($id);
         $acara = Acara::findOrFail($id);
+        // Hapus relasi panitia acara terlebih dahulu agar cascade agenda/divisi berjalan lancar
+        DB::table('acara_user')->where('acara_id', $id)->delete();
         $acara->delete();
 
-        return redirect()->route('acara');
+        return redirect()->route('acara')->with('success', 'Acara berhasil dihapus.');
     }
 }

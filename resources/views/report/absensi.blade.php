@@ -183,24 +183,32 @@
 </head>
 <body>
 
-    <div class="header">
-        <div>
-            <p class="org-label">Himpunan Mahasiswa Teknik Informatika &middot; HIMATIF</p>
-            <h1 class="doc-title">Laporan Kehadiran</h1>
-        </div>
-        <div style="text-align:right; font-size:10px; color:#64748B;">
-            {{ $date }}
-        </div>
-    </div>
+    <table style="width:100%; border-bottom: 2px solid #E2E8F0; margin-bottom: 18px; padding-bottom: 14px;">
+        <tr>
+            <td style="border:none; padding:0; vertical-align:bottom;">
+                <p class="org-label">Himpunan Mahasiswa Teknik Informatika &middot; HIMATIF</p>
+                <h1 class="doc-title">Laporan Kehadiran</h1>
+            </td>
+            <td style="border:none; padding:0; text-align:right; vertical-align:bottom; font-size:10px; color:#64748B;">
+                {{ $date }}
+            </td>
+        </tr>
+    </table>
 
     <div class="meta">
-        <strong>{{ $acara }}</strong> - {{ $agenda }}
-        <span style="float:right;">
-            Total: <strong>{{ $stats['total'] }}</strong>
-            &nbsp;&nbsp; Hadir: <strong>{{ $stats['hadir'] }}</strong>
-            &nbsp;&nbsp; Izin: <strong>{{ $stats['izin'] }}</strong>
-            &nbsp;&nbsp; Alpa: <strong>{{ $stats['tidak_hadir'] }}</strong>
-        </span>
+        <table style="width:100%; border:none; padding:0;">
+            <tr>
+                <td style="border:none; padding:0; vertical-align:middle;">
+                    <strong>{{ $acara }}</strong> &mdash; {{ $agenda }}
+                </td>
+                <td style="border:none; padding:0; text-align:right; vertical-align:middle; font-size:10px;">
+                    Total: <strong>{{ $stats['total'] }}</strong>
+                    &nbsp;&nbsp; Hadir: <strong>{{ $stats['hadir'] }}</strong>
+                    &nbsp;&nbsp; Izin: <strong>{{ $stats['izin'] }}</strong>
+                    &nbsp;&nbsp; Alpa: <strong>{{ $stats['tidak_hadir'] }}</strong>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <table>
@@ -251,7 +259,7 @@
     </table>
 
     <div class="footer">
-        Dokumen ini digenerate otomatis dari <span><i> Smart Attendance System</i></span> | Departemen Riset dan Teknologi - HIMATIF 2026
+        Dokumen ini digenerate otomatis dari <span><i> Smart Attendance System</i></span> | HIMATIF 2026 X Sandikala
     </div>
 
 </body>
